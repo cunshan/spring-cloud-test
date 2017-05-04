@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by GL on 2017/5/4.
  */
-@FeignClient("compute-service")
+@FeignClient(name = "compute-service", fallback = ComputeClientHystrix.class)
 public interface ComputeClient {
 
 
   @RequestMapping("/add")
-  Integer add(@RequestParam("a") Integer a, @RequestParam("b")Integer b);
+  Integer add(@RequestParam("a") Integer a, @RequestParam("b") Integer b);
 
 }
