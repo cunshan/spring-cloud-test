@@ -1,5 +1,7 @@
 package com.redbean.consumer.controller;
 
+import com.redbean.consumer.service.ComputeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,13 +12,12 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 public class ConsumerController {
-
-  @Autowired
-  RestTemplate restTemplate;
+@Autowired
+  ComputeService computeService;
 
   @RequestMapping("/add")
   public String add(){
-    return restTemplate.getForEntity("http://COMPUTE-SERVICE/add?a=10&b=2",String.class).getBody();
+    return this.computeService.addService();
   }
 
 }
